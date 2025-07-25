@@ -1,0 +1,10 @@
+93206e69695c54e407ac5ae0f5b09354c4c82f662e5bc0d14d6f9ae3fa24decb
+bcrt1qlmtyvjzfcn0wrxcvwmaqsh77y4uy604w6dzg36
+50
+bcrt1qj5ejtusu2mvuulhe7n46hggh3c93893tkm08d7
+20
+bcrt1qjxhuysygqeetse08c2zeythlrkev0u0r2e8kqj
+29.99999859
+-0.00000141
+202
+4a3430285a70317fae12a643c7c34ae3ed99db64078674373c0ce3d155a1b0b9
