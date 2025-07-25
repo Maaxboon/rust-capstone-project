@@ -5,8 +5,15 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# [dependencies]
+# bitcoincore-rpc = "0.19.0"
+# bitcoin = "0.32.6"
+# serde = "1.0"
+# serde_json = "1.0.141"
+
 [dependencies]
-bitcoincore-rpc = "0.18.0"
-bitcoin = "0.32.0"
-serde = "1.0"
+bitcoincore-rpc = "0.19.0"
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+hex = "0.4"  # Fix for `hex::decode` unresolved error
+bitcoin = "0.32.6" 
