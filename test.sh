@@ -2,12 +2,6 @@
 
 set -e
 
-# Check for docker-compose
-if ! command -v docker-compose &> /dev/null; then
-  echo "❌ docker-compose could not be found. Please install it first."
-  exit 1
-fi
-
 echo "🔄 Stopping and removing existing Docker containers (if any)..."
 docker-compose down || true
 
@@ -18,6 +12,7 @@ echo "⏳ Waiting for the Bitcoin node to be ready..."
 sleep 5
 
 echo "📦 Building Rust project..."
+cd rust  # <-- Move into the rust project directory
 cargo build
 
 echo "⚙️ Running Rust logic..."
