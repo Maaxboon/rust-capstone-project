@@ -1,46 +1,21 @@
-# #!/bin/bash
-
-# set -e
-
-# echo "🔄 Stopping and removing existing Docker containers (if any)..."
-# docker-compose down || true
-
-# echo "🚀 Starting regtest Bitcoin node using docker-compose..."
-# docker-compose up -d
-
-# echo "⏳ Waiting for the Bitcoin node to be ready..."
-# sleep 5
-
-# echo "📦 Building Rust project..."
-# cd rust  # <-- Move into the rust project directory
-# cargo build
-
-# echo "⚙️ Running Rust logic..."
-# ./run-rust.sh
-
-# echo "✅ Done."
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-
 #!/bin/bash
 
-set -e  # Exit on error
+set -e  # Exit on any error
 
 echo "🔧 Setting up Node.js via NVM..."
 
-# Load nvm if already installed
+# Load NVM if installed
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   source "$NVM_DIR/nvm.sh"
 else
-  # Install NVM
+  echo "📥 Installing NVM..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  export NVM_DIR="$HOME/.nvm"
   source "$NVM_DIR/nvm.sh"
 fi
 
-# Install latest LTS Node
+echo "📦 Installing latest LTS Node.js..."
 nvm install --lts
 nvm use --lts
 
@@ -64,8 +39,13 @@ echo "⚙️ Giving execution permissions to scripts..."
 chmod +x ./rust/run-rust.sh
 chmod +x ./run.sh
 
+echo "📦 Building Rust project..."
+cd rust
+cargo build
+cd ..
+
 echo "🚀 Running Rust logic and integration test..."
-/bin/bash run.sh
+./run.sh
 npm run test
 
 echo "🧹 Stopping containers and cleaning up..."
