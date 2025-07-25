@@ -23,6 +23,15 @@ echo "📦 Installing Node.js dependencies..."
 npm install
 
 echo "🐳 Starting bitcoind via Docker Compose..."
+if ! command -v docker-compose &> /dev/null; then
+  echo "❌ docker-compose not found. Installing..."
+  sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  echo "✅ docker-compose installed."
+else
+  echo "✅ docker-compose is already installed."
+fi
+
 docker-compose up -d
 sleep 10
 
